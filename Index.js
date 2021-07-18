@@ -12,6 +12,12 @@
   // add event listener to the button element
   itemList.addEventListener("click", delItem);
 
+  //
+  //TODO: Try re-setting the string inside the textbox to empty after adding to list
+  // TODO: add day/night mode to the page. It should be on the same row with the H2 (Add ToDo) element
+  //
+
+
   // event handler | event function () | AddItems function
   function addItem(e) {
       //overide the default submit function
@@ -51,6 +57,8 @@
           itemList.appendChild(li);
 
       }
+
+      //document.getElementById("item").innerHTML = "";
 
   }
 

@@ -52,14 +52,33 @@
       // confirm the addition of item
       let confirmation = confirm("Add ToDo?");
 
+      // adding local storage to mimic the presence of database
+      //localStorage.setItem("todoList", li.textContent);
+
       if (confirmation) {
           // appending the newly created li to the list groups
-          itemList.appendChild(li);
+          //itemList.appendChild(li);   //TODO UNCOMMENT THIS LATER IF THINGS DON'T WORKOUT
+
+          //Append item to the UL
+          //itemList.innerHTML = localStorage.getItem("todoList");
+
+          // making keys from data values
+          let date = Date.now();
+          localStorage.setItem(date, li.textContent);
+          location.reload();
+
 
       }
 
       //document.getElementById("item").innerHTML = "";
 
+  }
+
+  //NOTE redering the todos onto the screen
+  for (let i = 0; i < localStorage.length; i++) {
+      let iterKey = localStorage.key(i); // key
+      let iterValue = localStorage.getItem(iterKey); // value
+      itemList.innerHTML += `<li class="list-group-item">${iterValue}</li>`;
   }
 
 

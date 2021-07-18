@@ -1,0 +1,20 @@
+
+button{
+    //margin-left: 90vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 50px;
+
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    //justify-content: space-between;
+    justify-content: flex-start;
+}
+
+#item{
+    max-width: 50%;
+}

@@ -76,9 +76,15 @@
 
   //NOTE redering the todos onto the screen
   for (let i = 0; i < localStorage.length; i++) {
+      // extracting the key, value values from the localStorage
       let iterKey = localStorage.key(i); // key
       let iterValue = localStorage.getItem(iterKey); // value
-      itemList.innerHTML += `<li class="list-group-item">${iterValue}</li>`;
+
+      // create the del button
+      let delBtn = "<button class=\"btn btn-danger btn-small float-right delete\">X</button>";
+
+      //insert the list item and the button into the UL tag 
+      itemList.innerHTML += `<li class="list-group-item">${iterValue}${delBtn}</li>`;
   }
 
 
@@ -97,6 +103,9 @@
           if (confirmation) {
               // remove the li from the List Group (i.e li)
               itemList.removeChild(li);
+
+              // removing from the localStorage || Removing completely
+
           }
       };
   }

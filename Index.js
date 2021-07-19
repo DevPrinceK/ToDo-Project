@@ -125,7 +125,7 @@
           // delete if yes
           if (confirmation) {
               // remove the li from the List Group (i.e li)
-              //itemList.removeChild(li);
+              itemList.removeChild(li);
 
               //console.log(index, liValue);
               // removing from the localStorage || Removing completely

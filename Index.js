@@ -1,3 +1,8 @@
+  // importing the removeX function from the debugger.js file
+  import {
+      removeX
+  } from "./debugger.js";
+
   // grabbing elements into a variables
   let form = document.getElementById("addForm");
   let itemList = document.getElementById("items");
@@ -69,13 +74,10 @@
               let date = Date.now();
               localStorage.setItem(date, li.textContent);
               location.reload();
-
-
           }
       }
-
-
   }
+
 
   //NOTE redering the todos onto the screen
   for (let i = 0; i < localStorage.length; i++) {
@@ -100,8 +102,7 @@
           let li = e.target.parentElement;
 
           // grabbing the value of the li || To be used to find the index of the li
-          // let liValue = li.textContent + "X";
-          let liValue = li.textContent;
+          let liValue = removeX(li.textContent); // removes the redundant X from the end of the string
 
           //to store the index of the deleted element
           var index;

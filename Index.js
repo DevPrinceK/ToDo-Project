@@ -131,7 +131,7 @@
               // removing from the localStorage || Removing completely
               //TODO: localStorage.rem
               localStorage.removeItem(index);
-
+              location.reload();
 
           }
       };

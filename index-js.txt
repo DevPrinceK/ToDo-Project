@@ -1,3 +1,12 @@
+  
+  //NOTE THIS CONTAINS OLD CODES FROM THE INDEX.JS file.
+  //NOTE I KEPT IT HERE FOR DEBUGGING PURPOSE
+  
+  // importing the removeX function from the debugger.js file
+  import {
+      removeX
+  } from "./debugger.js";
+
   // grabbing elements into a variables
   let form = document.getElementById("addForm");
   let itemList = document.getElementById("items");
@@ -37,11 +46,34 @@
           // adding value to the created li tag
           li.appendChild(document.createTextNode(item));
 
+          //NOTE: THE DELETE BUTTON IS CREATED IN THE LOCALSTORAGE SECTION
+          // creating the del button
+          //let del = document.createElement("button");
+          //del.appendChild(document.createTextNode("X"));
+
+          // assigning a classname to the button
+          //del.className = "btn btn-danger btn-sm float-right delete";
+
+
+          // appending the button to the li item
+          //li.appendChild(del)
+
+          // debugging the li
+          //console.log(li);
+
           // confirm the addition of item
           let confirmation = confirm("Add ToDo?");
 
           // adding local storage to mimic the presence of database
+          //localStorage.setItem("todoList", li.textContent);
+
           if (confirmation) {
+              // appending the newly created li to the list groups
+              //itemList.appendChild(li);   //TODO UNCOMMENT THIS LATER IF THINGS DON'T WORKOUT
+
+              //Append item to the UL
+              //itemList.innerHTML = localStorage.getItem("todoList");
+
               // making keys from data values || Using dates for unique keys
               let date = Date.now();
               localStorage.setItem(date, li.textContent);
@@ -132,23 +164,5 @@
               item.style.display = "none";
           }
       })
-  }
 
-
-  // function to remove the last element of a string
-  function removeX(string) {
-      // first convert to array 
-      let strArray = string.trim().split("");
-
-      // remove last element
-      strArray.pop();
-
-      // variable to store new string
-      let newStr = "";
-
-      // converting the array to string
-      for (let i = 0; i < strArray.length; i++) {
-          newStr += strArray[i];
-      }
-      return newStr;
   }

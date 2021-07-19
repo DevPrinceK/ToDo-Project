@@ -28,10 +28,6 @@
 
       // check if textbox is not empty
       if (item != "") {
-
-
-
-
           // create html element
           let li = document.createElement("li");
 
@@ -69,9 +65,8 @@
               //Append item to the UL
               //itemList.innerHTML = localStorage.getItem("todoList");
 
-              // making keys from data values
+              // making keys from data values || Using dates for unique keys
               let date = Date.now();
-              //TODO:localStorage.setItem(date, li.textContent);
               localStorage.setItem(date, li.textContent);
               location.reload();
 
@@ -105,18 +100,24 @@
           let li = e.target.parentElement;
 
           // grabbing the value of the li || To be used to find the index of the li
-          let liValue = li.textContent + "X";
+          // let liValue = li.textContent + "X";
+          let liValue = li.textContent;
 
           //to store the index of the deleted element
           var index;
 
-          //NOTE-TODO NOTE-TODO NOTE-TODO NOTE-TODO
-          // getting the index of the li
-          for (let i = 0; i < localStorage.length; i++) {
-              // Because of some redundant 'X' which I am not yet ready to debug (:
-              if (liValue.indexOf(localStorage.getItem(localStorage.key(i)))) {
-                  index = localStorage.key(i);
+          // converting the local storage to a 2d array
+          var todos = Object.entries(localStorage);
+
+          for (let i = 0; i < todos.length; i++) {
+              // grabbing the current item
+              let currentItem = todos[i];
+
+              // checking if deleted value is the currentitem
+              if (currentItem[1] === liValue) {
+                  index = currentItem[0];
               }
+
           }
 
           // ask for confirmation before deleting item
@@ -127,11 +128,11 @@
               // remove the li from the List Group (i.e li)
               itemList.removeChild(li);
 
-              //console.log(index, liValue);
+              console.log(index, localStorage.getItem(index), liValue);
               // removing from the localStorage || Removing completely
               //TODO: localStorage.rem
               localStorage.removeItem(index);
-              location.reload();
+              //location.reload();
 
           }
       };

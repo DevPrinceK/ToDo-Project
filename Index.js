@@ -26,51 +26,59 @@
       // grab the value from the input box
       let item = document.getElementById("item").value;
 
-      // create html element
-      let li = document.createElement("li");
-
-      // assigning class to the li element
-      li.className = "list-group-item";
-
-      // adding value to the created li tag
-      li.appendChild(document.createTextNode(item));
-
-      // creating the del button
-      let del = document.createElement("button");
-      del.appendChild(document.createTextNode("X"));
-
-      // assigning a classname to the button
-      del.className = "btn btn-danger btn-sm float-right delete";
+      // check if textbox is not empty
+      if (item != "") {
 
 
-      // appending the button to the li item
-      li.appendChild(del)
-
-      // debugging the li
-      //console.log(li);
-
-      // confirm the addition of item
-      let confirmation = confirm("Add ToDo?");
-
-      // adding local storage to mimic the presence of database
-      //localStorage.setItem("todoList", li.textContent);
-
-      if (confirmation) {
-          // appending the newly created li to the list groups
-          //itemList.appendChild(li);   //TODO UNCOMMENT THIS LATER IF THINGS DON'T WORKOUT
-
-          //Append item to the UL
-          //itemList.innerHTML = localStorage.getItem("todoList");
-
-          // making keys from data values
-          let date = Date.now();
-          localStorage.setItem(date, li.textContent);
-          location.reload();
 
 
+          // create html element
+          let li = document.createElement("li");
+
+          // assigning class to the li element
+          li.className = "list-group-item";
+
+          // adding value to the created li tag
+          li.appendChild(document.createTextNode(item));
+
+          //NOTE: THE DELETE BUTTON IS CREATED IN THE LOCALSTORAGE SECTION
+          // creating the del button
+          //let del = document.createElement("button");
+          //del.appendChild(document.createTextNode("X"));
+
+          // assigning a classname to the button
+          //del.className = "btn btn-danger btn-sm float-right delete";
+
+
+          // appending the button to the li item
+          //li.appendChild(del)
+
+          // debugging the li
+          //console.log(li);
+
+          // confirm the addition of item
+          let confirmation = confirm("Add ToDo?");
+
+          // adding local storage to mimic the presence of database
+          //localStorage.setItem("todoList", li.textContent);
+
+          if (confirmation) {
+              // appending the newly created li to the list groups
+              //itemList.appendChild(li);   //TODO UNCOMMENT THIS LATER IF THINGS DON'T WORKOUT
+
+              //Append item to the UL
+              //itemList.innerHTML = localStorage.getItem("todoList");
+
+              // making keys from data values
+              let date = Date.now();
+              //TODO:localStorage.setItem(date, li.textContent);
+              localStorage.setItem(date, li.textContent);
+              location.reload();
+
+
+          }
       }
 
-      //document.getElementById("item").innerHTML = "";
 
   }
 
@@ -96,15 +104,34 @@
           // grabbing unto the parent element of the button (i.e li)
           let li = e.target.parentElement;
 
+          // grabbing the value of the li || To be used to find the index of the li
+          let liValue = li.textContent + "X";
+
+          //to store the index of the deleted element
+          var index;
+
+          //NOTE-TODO NOTE-TODO NOTE-TODO NOTE-TODO
+          // getting the index of the li
+          for (let i = 0; i < localStorage.length; i++) {
+              // Because of some redundant 'X' which I am not yet ready to debug (:
+              if (liValue.indexOf(localStorage.getItem(localStorage.key(i)))) {
+                  index = localStorage.key(i);
+              }
+          }
+
           // ask for confirmation before deleting item
           let confirmation = confirm("Delete ToDo?")
 
           // delete if yes
           if (confirmation) {
               // remove the li from the List Group (i.e li)
-              itemList.removeChild(li);
+              //itemList.removeChild(li);
 
+              //console.log(index, liValue);
               // removing from the localStorage || Removing completely
+              //TODO: localStorage.rem
+              localStorage.removeItem(index);
+
 
           }
       };
